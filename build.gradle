@@ -1,4 +1,4 @@
-//apply plugin: 'jacoco'
+apply plugin: 'jacoco'
 plugins {
 	id 'org.springframework.boot' version '2.1.5.RELEASE'
 	id 'java'
@@ -22,11 +22,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-//jacocoTestReport {
-//	reports {
-//		xml.enabled true
-//		html.enabled false
-//	}
-//}
-//
-//check.dependsOn jacocoTestReport
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled false
+	}
+}
+
+check.dependsOn jacocoTestReport
