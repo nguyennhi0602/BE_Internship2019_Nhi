@@ -14,15 +14,4 @@ import org.springframework.web.bind.annotation.PathVariable;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
-    @Autowired
-    private BookRepository bookRepository;
-
-    @Secured("ROLE_ADMIN")
-    @DeleteMapping("/{id}")
-    void delete(@PathVariable int id){
-        if(!bookRepository.existsById(id)){
-            throw new NotFoundException(String.format("Book id %d not found", id));
-        }
-        bookRepository.deleteById(id);
-    }
 }

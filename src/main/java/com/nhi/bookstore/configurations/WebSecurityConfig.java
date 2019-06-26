@@ -47,10 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-               .authorizeRequests()
-                //.antMatchers("/api/auth").permitAll()
-                .anyRequest().permitAll();
-                //.authenticated();
+                .authorizeRequests()
+                .antMatchers("/api/auth").permitAll()
+                .anyRequest()
+                .authenticated();
         http
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 

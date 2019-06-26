@@ -4,6 +4,7 @@ import com.nhi.bookstore.model.Book;
 import com.nhi.bookstore.exceptions.NotFoundException;
 import com.nhi.bookstore.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -34,9 +35,12 @@ public class BookController {
         System.out.println("day ne");
         return bookRepository.findByNameContaining(name);
     }
-
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/{id}")
-    void delete(@PathVariable int id) {
+    void delete(@PathVariable int id){
+        if(!bookRepository.existsById(id)){
+            throw new NotFoundException(String.format("Book id %d not found", id));
+        }
         bookRepository.deleteById(id);
     }
 
