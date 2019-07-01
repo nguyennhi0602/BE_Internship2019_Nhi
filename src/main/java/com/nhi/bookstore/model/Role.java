@@ -24,4 +24,5 @@ public class Role {
     @Column
     @NonNull
     private String description;
+
 }

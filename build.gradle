@@ -15,8 +15,6 @@ repositories {
 		url "https://plugins.gradle.org/m2/"
 	}
 }
-
-
 dependencies {
 	compile 'com.lorentzos.swipecards:library:1.0.8'
 	implementation 'org.springframework.boot:spring-boot-starter'
@@ -28,6 +26,8 @@ dependencies {
 	implementation 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.jsonwebtoken:jjwt:0.5.1'
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
 }
 jacocoTestReport {
 	reports {

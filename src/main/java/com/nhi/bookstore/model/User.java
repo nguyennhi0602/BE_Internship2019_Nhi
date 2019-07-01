@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Data
@@ -11,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,6 +20,7 @@ public class User {
 
     @Column(nullable = false)
     @NonNull
+    @NotEmpty
     private String userName;
 
     @JsonAlias("first_name")
@@ -25,14 +28,16 @@ public class User {
     @NonNull
     private String firstName;
 
-    @JsonAlias("first_name")
+    @JsonAlias("last_name")
     @Column(nullable = false)
     @NonNull
     private String lastName;
 
     @Column(nullable = false)
     @NonNull
+    @NotEmpty
     private String password;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -41,4 +46,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
+
 }
