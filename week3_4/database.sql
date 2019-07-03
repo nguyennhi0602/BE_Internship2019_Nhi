@@ -42,7 +42,9 @@ create table post(
     title varchar(50) ,
     content text,
     user_id int,
-    constraint FK_post_user foreign key (user_id) references users(id)
+    comment_id int,
+    constraint FK_post_user foreign key (user_id) references users(id),
+    constraint FK_post_comment foreign key (comment_id) references comment(id)
 );
 
 create table tag_post(
